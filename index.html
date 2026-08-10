@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -103,15 +104,18 @@
     .tabbar {
       position: fixed; top: calc(var(--banner-h) + var(--topbar-h)); left: 0; right: 0; z-index: 200;
       height: var(--tabs-h);
-      display: flex; align-items: stretch; justify-content: center; gap: 8px;
+      display: flex; align-items: stretch; justify-content: flex-start; gap: 8px;
       background: rgba(10,10,12,0.95); backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       overflow-x: auto; scrollbar-width: none; padding: 0 16px;
     }
     .tabbar::-webkit-scrollbar { display: none; }
+    
+    /* Центрируем табы на больших экранах */
+    @media (min-width: 900px) { .tabbar { justify-content: center; } }
 
     .tabbar__link {
-      position: relative; flex: 1; max-width: 180px; min-width: 120px;
+      position: relative; flex: 0 0 auto; min-width: 110px;
       display: flex; align-items: center; justify-content: center;
       padding: 0 16px; border: none; background: none;
       color: var(--text-muted); font-family: inherit; font-size: 0.82rem; font-weight: 500;
@@ -126,10 +130,15 @@
       height: 2px; background: transparent; border-radius: 2px 2px 0 0;
       transition: background 0.3s ease, transform 0.3s ease; transform: scaleX(0);
     }
-    .tabbar__link.active::after { transform: scaleX(1); background: var(--field); }
+    
+    /* ЦВЕТА ПОЛОСОК ПОД АКТИВНЫМИ ВКЛАДКАМИ */
+    .tabbar__link.active[data-go="home"]::after,
     .tabbar__link.active[data-go="tyl"]::after,
     .tabbar__link.active[data-go="palatka"]::after,
-    .tabbar__link.active[data-go="metallurg"]::after { background: var(--official); }
+    .tabbar__link.active[data-go="metallurg"]::after { transform: scaleX(1); background: var(--official); }
+    
+    .tabbar__link.active[data-go="research"]::after { transform: scaleX(1); background: var(--field); }
+    .tabbar__link.active[data-go="poll"]::after { transform: scaleX(1); background: var(--accent); }
 
     .app-views {
       position: fixed; top: var(--shell-top); left: 0; right: 0; bottom: 0;
@@ -160,8 +169,8 @@
 
     .start-hero--nav {
       cursor: pointer;
-      min-height: 220px;
-      margin-bottom: 20px;
+      min-height: 240px;
+      margin-bottom: 24px;
       transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
     }
     .start-hero--nav:hover {
@@ -170,7 +179,7 @@
       border-color: rgba(201,169,98,0.4);
     }
     .start-hero--nav .start-title {
-      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
       margin-bottom: 6px;
     }
     .start-hero--nav .start-desc { margin-bottom: 0; font-size: 0.85rem; }
@@ -235,6 +244,26 @@
       font-size: 0.72rem; font-weight: 600; color: var(--field);
     }
 
+    .start-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 48px; }
+
+    .start-card {
+      padding: 24px; border-radius: var(--radius-sm);
+      background: var(--bg-card); border: 1px solid var(--border);
+      cursor: pointer; transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease, border-color 0.3s ease;
+      font-family: inherit; text-align: left; color: inherit;
+    }
+
+    .start-card:hover { 
+      transform: translateY(-5px); 
+      border-color: rgba(255,255,255,0.2); 
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+    }
+    
+    .start-card__icon { font-size: 1.8rem; margin-bottom: 12px; transition: transform 0.3s ease; }
+    .start-card:hover .start-card__icon { transform: scale(1.1); }
+    .start-card__title { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+    .start-card__sub { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
     .official-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 60px; }
 
     .official-hero-card {
@@ -244,9 +273,7 @@
       border-radius: var(--radius); overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .official-hero-card:hover {
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    }
+    .official-hero-card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
 
     /* СТИЛИ СЛАЙДЕРА */
     .carousel {
@@ -259,9 +286,7 @@
       position: absolute; inset: 0; width: 100%; height: 100%;
       object-fit: cover; opacity: 0; transition: opacity 0.5s ease-in-out;
     }
-    .carousel__slide.active {
-      opacity: 1; z-index: 1;
-    }
+    .carousel__slide.active { opacity: 1; z-index: 1; }
     .carousel__btn {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
       background: rgba(10,10,12,0.6); color: #fff; border: 1px solid rgba(255,255,255,0.1);
@@ -287,9 +312,7 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 15px rgba(201,169,98,0.05); 
     }
 
-    .info-card--wide {
-      grid-column: 1 / -1;
-    }
+    .info-card--wide { grid-column: 1 / -1; }
 
     .info-card__label {
       font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em;
@@ -374,105 +397,46 @@
 
     .bar-row:last-child { border-bottom: none; }
 
-    .bar-row__label {
-      font-size: 0.8rem;
-      color: rgba(236,234,230,0.9);
-      line-height: 1.4;
-    }
+    .bar-row__label { font-size: 0.8rem; color: rgba(236,234,230,0.9); line-height: 1.4; }
 
     .bar-row__track {
-      height: 8px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 4px;
-      overflow: hidden;
+      height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden;
     }
 
     .bar-row__fill {
-      height: 100%;
-      border-radius: 4px;
+      height: 100%; border-radius: 4px;
       background: linear-gradient(90deg, var(--field), #6ee4c4);
-      width: 0; 
-      transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      width: 0; transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
-    .bar-row__fill--accent {
-      background: linear-gradient(90deg, var(--accent), #ff8a5c);
-    }
-
-    .bar-row__fill--gold {
-      background: linear-gradient(90deg, var(--official), #dfc88a);
-    }
+    .bar-row__fill--accent { background: linear-gradient(90deg, var(--accent), #ff8a5c); }
+    .bar-row__fill--gold { background: linear-gradient(90deg, var(--official), #dfc88a); }
 
     .bar-row__val {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--field);
-      white-space: nowrap;
-      min-width: 72px;
-      text-align: right;
+      font-size: 0.78rem; font-weight: 600; color: var(--field); white-space: nowrap; min-width: 72px; text-align: right;
     }
 
-    .bar-row__val span {
-      font-weight: 400;
-      color: var(--text-muted);
-      font-size: 0.72rem;
-    }
+    .bar-row__val span { font-weight: 400; color: var(--text-muted); font-size: 0.72rem; }
 
-    .survey-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.78rem;
-    }
-
-    .survey-table th,
-    .survey-table td {
-      padding: 10px 12px;
-      text-align: left;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .survey-table th {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .survey-table td:last-child,
-    .survey-table th:last-child { text-align: right; }
-
+    .survey-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; }
+    .survey-table th, .survey-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .survey-table th { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+    .survey-table td:last-child, .survey-table th:last-child { text-align: right; }
     .survey-table tr:last-child td { border-bottom: none; }
 
     .insight-card {
-      padding: 16px 18px;
-      border-radius: var(--radius-sm);
-      background: rgba(78,203,168,0.06);
-      border-left: 3px solid var(--field);
-      margin-top: 16px;
+      padding: 16px 18px; border-radius: var(--radius-sm);
+      background: rgba(78,203,168,0.06); border-left: 3px solid var(--field); margin-top: 16px;
     }
-
-    .insight-card p {
-      font-size: 0.82rem;
-      color: rgba(236,234,230,0.88);
-      line-height: 1.6;
-    }
-
+    .insight-card p { font-size: 0.82rem; color: rgba(236,234,230,0.88); line-height: 1.6; }
     .insight-card strong { color: var(--field); }
 
     /* ── Опрос (Новый формат) ── */
     .poll-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: start; margin-top: 40px;}
-
     .poll-help h3 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: #fff; }
     .poll-help p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
-
     .poll-help-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-    .poll-help-list li {
-      font-size: 0.85rem; color: var(--text-muted);
-      padding-left: 20px; position: relative; line-height: 1.55;
-    }
-
+    .poll-help-list li { font-size: 0.85rem; color: var(--text-muted); padding-left: 20px; position: relative; line-height: 1.55; }
     .poll-help-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold;}
 
     .poll-card {
@@ -481,11 +445,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     .poll-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-
-    .poll-card__head {
-      margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
-    }
-
+    .poll-card__head { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
     .poll-card__head h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 4px; color: #fff; }
     .poll-card__head p { font-size: 0.82rem; color: var(--text-muted); }
 
@@ -496,7 +456,6 @@
     }
 
     .poll-question-group { margin-bottom: 24px; }
-    
     .poll-q-title { font-size: 0.95rem; font-weight: 600; margin-bottom: 6px; color: #fff; }
     .poll-q-desc { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.55; }
 
@@ -516,7 +475,6 @@
       font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
       letter-spacing: 0.05em; cursor: pointer; transition: background 0.3s, transform 0.2s;
     }
-    
     .btn-submit:hover:not(:disabled) { background: #ff743f; transform: translateY(-2px); }
     .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
 
@@ -527,18 +485,16 @@
       font-size: 0.85rem; text-align: center; font-weight: 500;
       animation: fadeInSlideUp 0.4s ease forwards;
     }
-
     .poll-thanks.visible { display: block; }
 
     .footer-note {
       margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border);
       text-align: center; font-size: 0.72rem; color: var(--text-muted);
     }
-
     .footer-note span { color: var(--official); }
 
     @media (max-width: 768px) {
-      .official-grid, .poll-grid { grid-template-columns: 1fr; }
+      .official-grid, .poll-grid, .start-cards { grid-template-columns: 1fr; }
       .bar-row { grid-template-columns: 1fr; gap: 6px; }
       .bar-row__val { text-align: left; }
       .tabbar__link { font-size: 0.75rem; padding: 0 10px; min-width: auto; flex: 0 0 auto; }
@@ -551,11 +507,11 @@
   <div class="poll-banner">
     <span class="poll-banner__icon" aria-hidden="true">✦</span>
     <p class="poll-banner__text"><em>Пройди опросник</em> — помоги с заполнением информации</p>
-    <button class="poll-banner__btn" type="button" data-go="home">Пройти →</button>
+    <button class="poll-banner__btn" type="button" data-go="poll">Пройти →</button>
   </div>
 
   <div class="topbar">
-    <div class="logo"><span>Живые памятники</span> · Магнитогорск · Исследование</div>
+    <div class="logo"><span>Живые памятники</span> · Магнитогорск</div>
   </div>
 
   <nav class="tabbar" aria-label="Разделы сайта">
@@ -563,12 +519,14 @@
     <button class="tabbar__link" type="button" data-go="tyl">Тыл — Фронту</button>
     <button class="tabbar__link" type="button" data-go="palatka">Первая палатка</button>
     <button class="tabbar__link" type="button" data-go="metallurg">Металлург</button>
+    <button class="tabbar__link" type="button" data-go="research">Исследование</button>
+    <button class="tabbar__link" type="button" data-go="poll">Опрос</button>
   </nav>
 
   <main class="app-views">
 
     <!-- ==========================================
-         ВКЛАДКА 1: ГЛАВНАЯ (ХАБ И ОПРОС)
+         ВКЛАДКА 1: ГЛАВНАЯ (ХАБ)
     =========================================== -->
     <section class="view active" id="view-home" data-view="home">
       <div class="view-inner">
@@ -576,7 +534,7 @@
         <header class="page-head reveal">
           <p class="page-label page-label--official">Выбор объекта</p>
           <h2 class="page-title">Навигация</h2>
-          <p class="page-intro">Выберите памятник для изучения или прокрутите вниз, чтобы посмотреть результаты исследования и пройти опрос.</p>
+          <p class="page-intro">Нажмите на карточку памятника, чтобы изучить официальную информацию и описание физической среды.</p>
         </header>
 
         <!-- БЛОК 1: ТЫЛ-ФРОНТУ -->
@@ -585,7 +543,7 @@
           <div class="start-hero__content">
             <p class="start-tag">Городская антропология · 2026</p>
             <h1 class="start-title">Памятник <em>«Тыл — Фронту»</em></h1>
-            <p class="start-desc">Парк у Вечного огня. Нажмите, чтобы открыть историческую справку.</p>
+            <p class="start-desc">Парк у Вечного огня. Кликните для просмотра информации.</p>
           </div>
         </div>
 
@@ -595,7 +553,7 @@
           <div class="start-hero__content">
             <p class="start-tag">Символ первостроителей</p>
             <h1 class="start-title">Памятник <em>«Первая палатка»</em></h1>
-            <p class="start-desc">Сквер Ветеранов Магнитки. Историческая память в городской среде.</p>
+            <p class="start-desc">Сквер Ветеранов Магнитки. Кликните для просмотра информации.</p>
           </div>
         </div>
 
@@ -605,12 +563,32 @@
           <div class="start-hero__content">
             <p class="start-tag">Символ профессии</p>
             <h1 class="start-title">Памятник <em>«Металлург»</em></h1>
-            <p class="start-desc">Привокзальная площадь. Визитная карточка города для приезжающих.</p>
+            <p class="start-desc">Привокзальная площадь. Кликните для просмотра информации.</p>
           </div>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid var(--border); margin: 60px 0;" class="reveal">
+        <div class="start-cards" style="margin-top: 60px;">
+          <button class="start-card reveal" type="button" data-go="research">
+            <div class="start-card__icon">📊</div>
+            <p class="start-card__title">Результаты исследования</p>
+            <p class="start-card__sub">Анализ восприятия памятников жителями</p>
+          </button>
+          <button class="start-card reveal" type="button" data-go="poll" style="transition-delay: 0.1s;">
+            <div class="start-card__icon">📝</div>
+            <p class="start-card__title">Живой опросник</p>
+            <p class="start-card__sub">Поделитесь своей историей и мнением</p>
+          </button>
+        </div>
 
+        <p class="footer-note reveal"><span>Живые памятники</span> · Магнитогорск</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ВКЛАДКА 2: ИССЛЕДОВАНИЕ 
+    =========================================== -->
+    <section class="view" id="view-research" data-view="research">
+      <div class="view-inner">
         <header class="page-head reveal">
           <p class="page-label page-label--field">Полевые материалы</p>
           <h2 class="page-title">Данные исследователей</h2>
@@ -625,7 +603,6 @@
           <button class="field-subtab" type="button" data-sub="voices">4. Голоса людей</button>
         </div>
 
-        <!-- РЕЗУЛЬТАТЫ ИССЛЕДОВАНИЯ -->
         <div class="field-subpanel active" id="sub-names">
           <div class="survey-block reveal">
             <p class="survey-block__q">Вопрос 4</p>
@@ -861,8 +838,21 @@
           </div>
         </div>
 
-        <!-- ОПРОСНИК НОВЫЙ ФОРМАТ -->
-        <div class="poll-grid reveal" style="margin-top: 60px;">
+        <p class="footer-note reveal"><span>Живые памятники</span> · Магнитогорск</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         ВКЛАДКА 3: ОПРОСНИК
+    =========================================== -->
+    <section class="view" id="view-poll" data-view="poll">
+      <div class="view-inner">
+        <header class="page-head reveal">
+          <p class="page-label page-label--poll">Ваш вклад</p>
+          <h2 class="page-title">Живой опросник</h2>
+          <p class="page-intro">Помоги исследованию — ответь, что для тебя значат памятники города.</p>
+        </header>
+        <div class="poll-grid reveal">
           <div class="poll-help">
             <h3>Помощь в заполнении</h3>
             <p>Твой ответ — часть полевого исследования.</p>
@@ -903,9 +893,8 @@
       </div>
     </section>
 
-
     <!-- ==========================================
-         ВКЛАДКА 2: ТЫЛ — ФРОНТУ
+         ВКЛАДКА 4: ТЫЛ — ФРОНТУ
     =========================================== -->
     <section class="view" id="view-tyl" data-view="tyl">
       <div class="view-inner">
@@ -966,11 +955,6 @@
               <li>Площадь торжеств, набережная Урала</li>
             </ul>
           </div>
-          <div class="info-card reveal">
-            <p class="info-card__label">Контекст</p>
-            <h4>Триптих «Меча Победы»</h4>
-            <p>Магнитогорск — Волгоград — Берлин. Мероприятия: 9 Мая, День города, экскурсии.</p>
-          </div>
           
           <div class="info-card reveal">
             <p class="info-card__label">Народная топонимика</p>
@@ -994,9 +978,8 @@
       </div>
     </section>
 
-
     <!-- ==========================================
-         ВКЛАДКА 3: ПЕРВАЯ ПАЛАТКА
+         ВКЛАДКА 5: ПЕРВАЯ ПАЛАТКА
     =========================================== -->
     <section class="view" id="view-palatka" data-view="palatka">
       <div class="view-inner">
@@ -1072,7 +1055,7 @@
 
 
     <!-- ==========================================
-         ВКЛАДКА 4: МЕТАЛЛУРГ
+         ВКЛАДКА 6: МЕТАЛЛУРГ
     =========================================== -->
     <section class="view" id="view-metallurg" data-view="metallurg">
       <div class="view-inner">
@@ -1151,7 +1134,7 @@
   </main>
 
   <script>
-    const VIEWS = ['home', 'tyl', 'palatka', 'metallurg'];
+    const VIEWS = ['home', 'tyl', 'palatka', 'metallurg', 'research', 'poll'];
     const views = document.querySelectorAll('.view');
     const tabLinks = document.querySelectorAll('.tabbar__link');
     const goButtons = document.querySelectorAll('[data-go]');
@@ -1190,6 +1173,7 @@
         if (isActive) {
           v.classList.add('active');
           v.scrollTop = 0;
+          
           // Сброс графиков
           const bars = v.querySelectorAll('.bar-row__fill');
           bars.forEach(bar => { bar.style.width = '0'; });
@@ -1212,8 +1196,15 @@
         if (location.hash !== hash) history.pushState({ view: viewId }, '', hash);
       }
       
-      document.title = 'Живые памятники — ' + 
-        (viewId === 'home' ? 'Главная' : document.querySelector(`[data-go="${viewId}"]`).textContent);
+      const titles = {
+        home: 'Главная',
+        tyl: 'Тыл — Фронту',
+        palatka: 'Первая палатка',
+        metallurg: 'Металлург',
+        research: 'Исследование',
+        poll: 'Опрос'
+      };
+      document.title = 'Живые памятники — ' + titles[viewId];
     }
 
     function parseHash() {
@@ -1253,7 +1244,7 @@
       });
     });
 
-    // 4. ОПРОС (НОВАЯ ЛОГИКА ДЛЯ TEXTAREA)
+    // 4. ОПРОС 
     const submitBtn = document.getElementById('poll-submit');
     if (submitBtn) {
       submitBtn.addEventListener('click', () => {
