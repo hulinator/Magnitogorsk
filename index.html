@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -111,7 +110,6 @@ HTML
     }
     .tabbar::-webkit-scrollbar { display: none; }
     
-    /* Центрируем табы на больших экранах */
     @media (min-width: 900px) { .tabbar { justify-content: center; } }
 
     .tabbar__link {
@@ -131,7 +129,6 @@ HTML
       transition: background 0.3s ease, transform 0.3s ease; transform: scaleX(0);
     }
     
-    /* ЦВЕТА ПОЛОСОК ПОД АКТИВНЫМИ ВКЛАДКАМИ */
     .tabbar__link.active[data-go="home"]::after,
     .tabbar__link.active[data-go="tyl"]::after,
     .tabbar__link.active[data-go="palatka"]::after,
@@ -160,7 +157,6 @@ HTML
 
     .view-inner { max-width: 1000px; margin: 0 auto; padding: 32px 24px 48px; }
 
-    /* ГЛАВНЫЕ ФОТО И НАВИГАЦИОННЫЕ БАННЕРЫ */
     .start-hero {
       position: relative; border-radius: var(--radius); overflow: hidden;
       min-height: 400px; display: flex; align-items: flex-end;
@@ -275,7 +271,6 @@ HTML
     }
     .official-hero-card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
 
-    /* СТИЛИ СЛАЙДЕРА */
     .carousel {
       position: relative; width: 100%; height: 100%; min-height: 250px; background: #111;
     }
@@ -328,7 +323,6 @@ HTML
       width: 4px; height: 4px; border-radius: 50%; background: var(--official); opacity: 0.6;
     }
 
-    /* ── Исследование ── */
     .field-subtabs {
       display: flex; gap: 8px; flex-wrap: wrap;
       margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
@@ -431,7 +425,6 @@ HTML
     .insight-card p { font-size: 0.82rem; color: rgba(236,234,230,0.88); line-height: 1.6; }
     .insight-card strong { color: var(--field); }
 
-    /* ── Опрос (Новый формат) ── */
     .poll-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: start; margin-top: 40px;}
     .poll-help h3 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: #fff; }
     .poll-help p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
@@ -655,6 +648,9 @@ HTML
               <div class="bar-row__track"><div class="bar-row__fill" style="width:0" data-width="16.7%"></div></div>
               <span class="bar-row__val">10 <span>(16,7%)</span></span>
             </div>
+            <div class="insight-card">
+              <p><strong>Вывод:</strong> Восприятие исторической среды трансформируется. Почти половина опрошенных отмечает тенденцию к более поверхностному и повседневно-развлекательному отношению к мемориалам.</p>
+            </div>
           </div>
         </div>
 
@@ -728,6 +724,9 @@ HTML
               <div class="bar-row__track"><div class="bar-row__fill" style="width:0" data-width="33.3%"></div></div>
               <span class="bar-row__val">20 <span>(33,3%)</span></span>
             </div>
+            <div class="insight-card">
+              <p><strong>Вывод:</strong> Памятники активно интегрируются в повседневность. Они всё чаще выступают фоном для социализации и создания визуального контента, хотя мемориальная функция (40%) по-прежнему важна.</p>
+            </div>
           </div>
 
           <div class="survey-block reveal">
@@ -752,6 +751,9 @@ HTML
               <span class="bar-row__label">Сижу на скамейках, отдыхаю, общаюсь</span>
               <div class="bar-row__track"><div class="bar-row__fill" style="width:0" data-width="31.7%"></div></div>
               <span class="bar-row__val">19 <span>(31,7%)</span></span>
+            </div>
+            <div class="insight-card">
+              <p><strong>Вывод:</strong> Чаще всего монументы выступают частью транзитного маршрута (61,7%). При этом больше половины людей всё же взаимодействуют с ними напрямую — читают надписи или делают снимки.</p>
             </div>
           </div>
         </div>
@@ -803,6 +805,9 @@ HTML
               <div class="bar-row__track"><div class="bar-row__fill bar-row__fill--accent" style="width:0" data-width="15%"></div></div>
               <span class="bar-row__val">9 <span>(15%)</span></span>
             </div>
+            <div class="insight-card">
+              <p><strong>Вывод:</strong> Большинство не против тактильного «освоения» монумента (58,3%). Пространство воспринимается людьми как живая городская среда, а не строгая неприкасаемая святыня.</p>
+            </div>
           </div>
         </div>
 
@@ -834,6 +839,9 @@ HTML
               <span class="bar-row__label">Спокойствие и умиротворение</span>
               <div class="bar-row__track"><div class="bar-row__fill" style="width:0" data-width="25%"></div></div>
               <span class="bar-row__val">15 <span>(25%)</span></span>
+            </div>
+            <div class="insight-card">
+              <p><strong>Вывод:</strong> Память и уважение (51,7%) тесно соседствуют с радостными эмоциями и желанием запечатлеть момент (48,3%). При этом почти треть респондентов (30%) испытывает безразличие.</p>
             </div>
           </div>
         </div>
@@ -955,6 +963,11 @@ HTML
               <li>Площадь торжеств, набережная Урала</li>
             </ul>
           </div>
+          <div class="info-card reveal">
+            <p class="info-card__label">Контекст</p>
+            <h4>Триптих «Меча Победы»</h4>
+            <p>Магнитогорск — Волгоград — Берлин. Мероприятия: 9 Мая, День города, экскурсии.</p>
+          </div>
           
           <div class="info-card reveal">
             <p class="info-card__label">Народная топонимика</p>
@@ -1053,7 +1066,6 @@ HTML
       </div>
     </section>
 
-
     <!-- ==========================================
          ВКЛАДКА 6: МЕТАЛЛУРГ
     =========================================== -->
@@ -1139,7 +1151,6 @@ HTML
     const tabLinks = document.querySelectorAll('.tabbar__link');
     const goButtons = document.querySelectorAll('[data-go]');
 
-    // 1. АНИМАЦИЯ ПРИ СКРОЛЛЕ
     function initScrollReveal() {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver((entries) => {
@@ -1147,7 +1158,6 @@ HTML
           if (entry.isIntersecting) {
             entry.target.classList.add('active');
             
-            // Анимация графиков
             const bars = entry.target.querySelectorAll('.bar-row__fill');
             bars.forEach(bar => {
               if (bar.dataset.width) {
@@ -1164,7 +1174,6 @@ HTML
       reveals.forEach(reveal => observer.observe(reveal));
     }
 
-    // 2. ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК (С ГЛАДКОЙ АНИМАЦИЕЙ)
     function goTo(viewId, { pushState = true } = {}) {
       if (!VIEWS.includes(viewId)) viewId = 'home';
       
@@ -1174,11 +1183,9 @@ HTML
           v.classList.add('active');
           v.scrollTop = 0;
           
-          // Сброс графиков
           const bars = v.querySelectorAll('.bar-row__fill');
           bars.forEach(bar => { bar.style.width = '0'; });
           
-          // Сброс скролл-анимации
           const reveals = v.querySelectorAll('.reveal');
           reveals.forEach(r => r.classList.remove('active'));
           setTimeout(initScrollReveal, 50);
@@ -1222,11 +1229,9 @@ HTML
     window.addEventListener('popstate', () => goTo(parseHash(), { pushState: false }));
     window.addEventListener('hashchange', () => goTo(parseHash(), { pushState: false }));
     
-    // Инициализация при загрузке
     goTo(parseHash(), { pushState: false });
     setTimeout(initScrollReveal, 100);
 
-    // 3. ПОДВКЛАДКИ В ИССЛЕДОВАНИИ
     document.querySelectorAll('.field-subtab').forEach(tab => {
       tab.addEventListener('click', () => {
         const id = tab.dataset.sub;
@@ -1244,7 +1249,6 @@ HTML
       });
     });
 
-    // 4. ОПРОС 
     const submitBtn = document.getElementById('poll-submit');
     if (submitBtn) {
       submitBtn.addEventListener('click', () => {
@@ -1262,7 +1266,6 @@ HTML
       });
     }
 
-    // 5. КАРУСЕЛЬ (ФОТОГРАФИИ)
     document.querySelectorAll('.carousel').forEach(carousel => {
       const slides = carousel.querySelectorAll('.carousel__slide');
       const btnPrev = carousel.querySelector('.carousel__btn--prev');
@@ -1283,12 +1286,11 @@ HTML
       }
     });
 
-    // 6. АТМОСФЕРНЫЕ ЧАСТИЦЫ НА ФОНЕ
     class ParticleEngine {
       constructor(canvas) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
-        this.type = canvas.dataset.type; // 'dust', 'snow', 'sparks'
+        this.type = canvas.dataset.type;
         this.particles = [];
         window.addEventListener('resize', () => this.resize());
         this.resize();
