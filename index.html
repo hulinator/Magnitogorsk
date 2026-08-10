@@ -157,6 +157,7 @@
 
     .view-inner { max-width: 1000px; margin: 0 auto; padding: 32px 24px 48px; }
 
+    /* ГЛАВНЫЕ ФОТО И НАВИГАЦИОННЫЕ БАННЕРЫ */
     .start-hero {
       position: relative; border-radius: var(--radius); overflow: hidden;
       min-height: 400px; display: flex; align-items: flex-end;
@@ -255,8 +256,10 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
     }
     
-    .start-card__icon { font-size: 1.8rem; margin-bottom: 12px; transition: transform 0.3s ease; }
+    .start-card__icon { margin-bottom: 12px; transition: transform 0.3s ease; display: inline-flex; align-items: center; }
+    .start-card__icon svg { width: 32px; height: 32px; }
     .start-card:hover .start-card__icon { transform: scale(1.1); }
+    
     .start-card__title { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
     .start-card__sub { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
@@ -271,6 +274,7 @@
     }
     .official-hero-card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
 
+    /* СТИЛИ СЛАЙДЕРА */
     .carousel {
       position: relative; width: 100%; height: 100%; min-height: 250px; background: #111;
     }
@@ -323,6 +327,7 @@
       width: 4px; height: 4px; border-radius: 50%; background: var(--official); opacity: 0.6;
     }
 
+    /* ── Исследование ── */
     .field-subtabs {
       display: flex; gap: 8px; flex-wrap: wrap;
       margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border);
@@ -425,6 +430,7 @@
     .insight-card p { font-size: 0.82rem; color: rgba(236,234,230,0.88); line-height: 1.6; }
     .insight-card strong { color: var(--field); }
 
+    /* ── Опрос (Новый формат) ── */
     .poll-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: start; margin-top: 40px;}
     .poll-help h3 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; color: #fff; }
     .poll-help p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 14px; }
@@ -500,7 +506,7 @@
   <div class="poll-banner">
     <span class="poll-banner__icon" aria-hidden="true">✦</span>
     <p class="poll-banner__text"><em>Пройди опросник</em> — помоги с заполнением информации</p>
-    <button class="poll-banner__btn" type="button" data-go="poll">Пройти →</button>
+    <button class="poll-banner__btn" type="button" data-go="home">Пройти →</button>
   </div>
 
   <div class="topbar">
@@ -534,7 +540,7 @@
         <div class="start-hero start-hero--nav reveal" data-go="tyl">
           <div class="start-hero__bg" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/38/%D0%9F%D0%B0%D0%BC%D1%8F%D1%82%D0%BD%D0%B8%D0%BA_%C2%AB%D0%A2%D1%8B%D0%BB_%E2%80%93_%D1%84%D1%80%D0%BE%D0%BD%D1%82%D1%83%C2%BB_%D0%B3._%D0%9C%D0%B0%D0%B3%D0%BD%D0%B8%D1%82%D0%BE%D0%B3%D0%BE%D1%80%D1%81%D0%BA.jpg');"></div>
           <div class="start-hero__content">
-            <p class="start-tag">Городская антропология · 2026</p>
+            <p class="start-tag">Символ победы</p>
             <h1 class="start-title">Памятник <em>«Тыл — Фронту»</em></h1>
             <p class="start-desc">Парк у Вечного огня. Кликните для просмотра информации.</p>
           </div>
@@ -562,12 +568,16 @@
 
         <div class="start-cards" style="margin-top: 60px;">
           <button class="start-card reveal" type="button" data-go="research">
-            <div class="start-card__icon">📊</div>
+            <div class="start-card__icon" style="color: var(--field)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+            </div>
             <p class="start-card__title">Результаты исследования</p>
             <p class="start-card__sub">Анализ восприятия памятников жителями</p>
           </button>
           <button class="start-card reveal" type="button" data-go="poll" style="transition-delay: 0.1s;">
-            <div class="start-card__icon">📝</div>
+            <div class="start-card__icon" style="color: var(--accent)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+            </div>
             <p class="start-card__title">Живой опросник</p>
             <p class="start-card__sub">Поделитесь своей историей и мнением</p>
           </button>
@@ -911,7 +921,7 @@
           <!-- Частицы Пыль/Пепел -->
           <canvas class="particles-bg" data-type="dust"></canvas>
           <div class="start-hero__content">
-            <p class="start-tag">Главный символ</p>
+            <p class="start-tag">Символ победы</p>
             <h1 class="start-title"><em>«Тыл — Фронту»</em></h1>
             <p class="start-desc">Парк у Вечного огня. Монумент, посвященный трудовому подвигу магнитогорцев.</p>
           </div>
@@ -991,6 +1001,7 @@
       </div>
     </section>
 
+
     <!-- ==========================================
          ВКЛАДКА 5: ПЕРВАЯ ПАЛАТКА
     =========================================== -->
@@ -1045,6 +1056,16 @@
             </ul>
           </div>
           <div class="info-card reveal">
+            <p class="info-card__label">Комплекс</p>
+            <h4>Из чего состоит</h4>
+            <ul>
+              <li>Бетонный монумент в форме палатки на постаменте.</li>
+              <li>Чугунная скульптура руки, держащей кусок железной руды.</li>
+              <li>Сквер Ветеранов Магнитки.</li>
+            </ul>
+          </div>
+
+          <div class="info-card reveal">
             <p class="info-card__label">Народная топонимика</p>
             <h4>Неофициальные названия</h4>
             <ul>
@@ -1066,6 +1087,7 @@
       </div>
     </section>
 
+
     <!-- ==========================================
          ВКЛАДКА 6: МЕТАЛЛУРГ
     =========================================== -->
@@ -1076,7 +1098,7 @@
           <!-- Частицы Искры -->
           <canvas class="particles-bg" data-type="sparks"></canvas>
           <div class="start-hero__content">
-            <p class="start-tag">Лицо города</p>
+            <p class="start-tag">Символ профессии</p>
             <h1 class="start-title"><em>«Металлург»</em></h1>
             <p class="start-desc">Привокзальная площадь. Монумент, встречающий всех гостей города металлургов.</p>
           </div>
